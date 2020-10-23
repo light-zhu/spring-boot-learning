@@ -22,6 +22,17 @@
 
     </properties>
 
+
+    <dependencies>
+        <!--provider 只在编译阶段生效，不打入包中-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <!--模块类型-->
     <modules>
         <module>spring-boot-web</module>
