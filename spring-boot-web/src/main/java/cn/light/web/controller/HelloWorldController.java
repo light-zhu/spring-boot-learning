@@ -1,6 +1,8 @@
 package cn.light.web.controller;
 
 import cn.light.web.bean.Users;
+import cn.light.web.util.LightProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 //使用RestController注解 默认返回数据为JSON格式
 @RestController
 public class HelloWorldController {
+
+    @Autowired
+    private LightProperties lightProperties;
 
     @RequestMapping("/hello")
     public String getHello() {
@@ -28,6 +33,13 @@ public class HelloWorldController {
         users.setPasswordSalt("aac");
         return users;
     }
+
+    @RequestMapping("/getProperties")
+    public String getProperties(){
+        return lightProperties.getTitle();
+    }
+
+
 
 
 

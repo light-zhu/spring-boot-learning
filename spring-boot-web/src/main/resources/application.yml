@@ -3,3 +3,7 @@ server:
 logging:
   level:
     cn.light.web: debug
+
+light:
+  title: lightTitle
+  content: lightContent
