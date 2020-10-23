@@ -1,9 +1,12 @@
 package cn.light.web;
 
+import cn.light.web.bean.Users;
 import cn.light.web.controller.HelloWorldController;
+import cn.light.web.jpa.UsersRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,6 +23,9 @@ public class WebApplicationTests {
 
    private MockMvc mvc;
 
+   @Autowired
+   private UsersRepository usersRepository;
+
    @Before
    public void setUp(){
        mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();
@@ -30,6 +36,14 @@ public class WebApplicationTests {
         mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Hello World")));
+   }
+
+   @Test
+   public void testUsersRespository(){
+       //usersRepository.save(new Users("Amy","111","ccc"));
+
+       Users users = usersRepository.findByUsername("Amy");
+       System.out.println(users.toString());
    }
 
 }
